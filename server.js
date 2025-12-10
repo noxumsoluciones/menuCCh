@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3010;
 app.listen(PORT, () => {
-    console.log(`🔥 Servidor Cerdo Chingón corriendo en http://localhost:${PORT}`);
+    console.log(`🔥 Servidor Cerdo Chingón corriendo en el puerto ${PORT}`);
 });
