@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerdo Chingón | Menú Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <header>
+    <video autoplay muted loop playsinline class="video-bg">
+        <source src="/img/video.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+    </video>
+
+    <div class="video-overlay"></div>
+
+    <div class="header-content">
+        <div class="logo-placeholder" data-aos="zoom-in">
+            <i class="fas fa-skull-crossbones"></i> 
+        </div>
+        <div class="since-badge" data-aos="fade-down">SINCE 2023</div>
+        <h1 class="hero-title neon-text-orange" data-aos="fade-up">CERDO<br><span class="neon-text-red">CHINGÓN</span></h1>
+        <p style="color: #ccc; margin-top: 10px; font-size: 1.2rem;" data-aos="fade-up" data-aos-delay="200">Comida rápida con alma rebelde</p>
+        <a href="#menu" class="cta-btn" data-aos="fade-up" data-aos-delay="400">Ver Menú Digital</a>
+    </div>
+</header>
+
+    <section id="news" class="news-section">
+        <h2 class="section-title" data-aos="fade-right">Noticias Chingonas</h2>
+        <div class="news-container">
+            <% news.forEach(item => { %>
+                <div class="news-card" data-aos="flip-left">
+                    <img src="<%= item.image %>" alt="<%= item.title %>" class="news-img">
+                    <div class="news-info">
+                        <h3><%= item.title %></h3>
+                        <p><%= item.desc %></p>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+    <h2 class="section-title" data-aos="fade-right">Nuestras Chingonerías</h2>
+    
+    <% products.forEach(cat => { %>
+        <h3 class="category-title" data-aos="fade-left"><%= cat.category %></h3>
+        
+        <div class="category-layout">
+            
+            <div class="category-hero">
+                <img src="<%= cat.image %>" alt="<%= cat.category %>">
+                
+            <!--<% if (cat.image) { %>
+                    <img src="<%= cat.image %>" alt="<%= cat.category %>">
+                <% } else { %>
+                    <div class="placeholder-hero"><i class="fas fa-utensils"></i></div>
+                <% } %>
+            -->
+            </div>
+
+            <div class="products-grid">
+                <% cat.items.forEach(item => { %>
+                    <div class="menu-card compact" data-aos="fade-up">
+                        <div class="card-info">
+                            <h3 class="card-title"><%= item.name %></h3>
+                            <p class="card-desc"><%= item.desc %></p>
+                            <div class="price-tag">
+                                <span class="price neon-text-blue">$<%= item.price.toLocaleString() %></span>
+                                <button class="add-btn" onclick="addToCart('<%= item.id %>', '<%= item.name %>', <%= item.price %>)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+        </div> <hr class="neon-divider">
+    <% }) %>
+</section>
+
+    <section class="location-section" data-aos="fade-up">
+        <h2 class="section-title" style="color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue);">¿Dónde Caerle?</h2>
+        
+        <div class="info-box">
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <p><strong>Soacha Centro</strong><br>Calle 19 a # 7-30</p>
+                <small style="color:var(--neon-blue)">¡Califícanos en Maps!</small>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-motorcycle"></i>
+                <p><strong>Domicilios</strong><br>319 295 8035</p>
+            </div>
+        </div>
+
+        <div class="map-container">
+           <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.054363363675!2d-74.2138003!3d4.5830354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9fa700509527%3A0xb59ead5c8fa9c9d6!2sEL%20CERDO%20CHINGON%20%F0%9F%90%BD%F0%9F%90%BD%F0%9F%90%BD!5e0!3m2!1ses!2sco!4v1715264000000!5m2!1ses!2sco" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <div class="cart-float" onclick="openCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+    </div>
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2 class="neon-text-orange">Tu Pedido 🐷</h2>
+            
+            <div id="cart-items-container">
+                <p style="text-align:center; color:#777;">El carrito está vacío</p>
+            </div>
+            
+            <div class="cart-total">
+                Total: <span id="cart-total-price">$0</span>
+            </div>
+
+            <form id="checkoutForm" onsubmit="sendToWhatsApp(event)">
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <input type="text" id="custName" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label>Dirección de Entrega:</label>
+                    <input type="text" id="custAddress" required placeholder="Calle 123...">
+                </div>
+                <div class="form-group">
+                    <label>Medio de Pago:</label>
+                    <select id="custPayment">
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Nequi/Daviplata">Nequi / Daviplata</option>
+                        <option value="Transferencia">Transferencia</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ubicación / Referencia:</label>
+                    <input type="text" id="custRef" placeholder="Casa azul, cerca al parque...">
+                </div>
+
+                <button type="submit" class="cta-btn full-width">
+                    <i class="fab fa-whatsapp"></i> ENVIAR PEDIDO
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Cerdo Chingón. Desarrollado por Noxum Soluciones.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script> AOS.init(); </script>
+    <script src="/js/script.js"></script>
+</body>
+</html>

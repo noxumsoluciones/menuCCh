@@ -1,0 +1,482 @@
+/* --- PEGA EL CSS ORIGINAL AQUÍ --- */
+
+        :root {
+            --neon-orange: #ff5e00;
+            --neon-red: #ff003c;
+            --neon-blue: #00f3ff;
+            --bg-color: #050505;
+            --card-bg: #111;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- Tipografía y Efectos Neón --- */
+        h1, h2, h3 {
+            font-family: 'Creepster', cursive; /* Fuente estilo Halloween/Biker */
+            letter-spacing: 2px;
+        }
+
+        .neon-text-orange {
+            color: #fff;
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px var(--neon-orange),
+                0 0 40px var(--neon-orange),
+                0 0 80px var(--neon-orange);
+        }
+
+        .neon-text-red {
+            color: #fff;
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 20px var(--neon-red),
+                0 0 40px var(--neon-red);
+        }
+
+        /* --- Header / Hero Section con Video --- */
+header {
+    height: 100vh;
+    position: relative; /* Necesario para contener el video absoluto */
+    overflow: hidden;   /* Corta el video si se sale */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid var(--neon-red);
+    /* El background radial queda como fallback si el video tarda en cargar */
+    background: radial-gradient(circle, rgba(20,20,20,1) 0%, rgba(0,0,0,1) 100%);
+}
+/* Estilos del Video de Fondo */
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* CLAVE: Hace que el video llene la pantalla sin deformarse */
+    z-index: 0;
+}
+
+/* Capa oscura para contraste */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Oscurece el video un 60% */
+    z-index: 1;
+}
+
+/* Contenido (Texto y Botones) */
+.header-content {
+    position: relative;
+    z-index: 2; /* Asegura que el texto esté ENCIMA del video y la capa oscura */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+        .logo-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--neon-orange);
+            box-shadow: 0 0 20px var(--neon-orange), inset 0 0 20px var(--neon-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .since-badge {
+            background: var(--neon-red);
+            color: black;
+            padding: 5px 15px;
+            font-weight: bold;
+            transform: skew(-10deg);
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 0 0 15px var(--neon-red);
+        }
+
+        .cta-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 10px var(--neon-blue);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .cta-btn:hover {
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 40px var(--neon-blue);
+        }
+
+        /* --- Menú Interactivo --- */
+        .menu-section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: var(--neon-red);
+            text-shadow: 0 0 10px var(--neon-red);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        /* Efecto Hover en Tarjetas */
+        .menu-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-orange);
+            box-shadow: 0 0 30px rgba(255, 94, 0, 0.4);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background-color: #222; /* Placeholder para foto */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #444;
+            border-bottom: 1px solid #333;
+        }
+
+        .card-info {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .card-desc {
+            color: #bbb;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .price-tag {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        .add-btn {
+            background: var(--neon-orange);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover {
+            background: white;
+            color: var(--neon-orange);
+            box-shadow: 0 0 15px var(--neon-orange);
+        }
+
+        /* --- Ubicación y Mapa --- */
+        .location-section {
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .map-container {
+            width: 100%;
+            max-width: 1000px;
+            height: 400px;
+            margin: 30px auto;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: invert(90%) hue-rotate(180deg); /* Mapa oscuro */
+        }
+
+        .info-box {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .info-item {
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--neon-red);
+            box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
+            min-width: 250px;
+        }
+
+        .info-item i {
+            font-size: 2rem;
+            color: var(--neon-orange);
+            margin-bottom: 10px;
+        }
+
+        /* --- Animaciones --- */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px var(--neon-orange); }
+            50% { box-shadow: 0 0 40px var(--neon-orange), 0 0 10px var(--neon-red); }
+            100% { box-shadow: 0 0 20px var(--neon-orange); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: black;
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+/* --- ESTILOS NUEVOS --- */
+
+/* Noticias */
+.news-section { padding: 40px 20px; text-align: center; }
+.news-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.news-card { background: #222; border: 1px solid var(--neon-orange); width: 300px; border-radius: 10px; overflow: hidden; }
+.news-img { width: 100%; height: max-content; object-fit: cover; }
+.news-info { padding: 15px; }
+.category-title { color: var(--neon-blue); font-family: 'Creepster'; font-size: 2.5rem; margin: 40px 0 20px 0; text-align: center; text-shadow: 0 0 10px var(--neon-blue); }
+
+/* Carrito Flotante */
+.cart-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--neon-red);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 0 20px var(--neon-red);
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+.cart-float:hover { transform: scale(1.1); }
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); }
+.modal-content { background-color: #111; margin: 5% auto; padding: 20px; border: 2px solid var(--neon-orange); width: 90%; max-width: 500px; border-radius: 10px; color: white; max-height: 90vh; overflow-y: auto; }
+.close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+.close:hover { color: white; }
+
+/* Items del Carrito en Modal */
+.cart-item { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+.cart-item-title { color: var(--neon-orange); }
+.cart-total { font-size: 1.5rem; font-weight: bold; text-align: right; margin: 20px 0; color: var(--neon-blue); }
+
+/* Formulario */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; color: #ccc; }
+.form-group input, .form-group select { width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: white; border-radius: 5px; }
+.full-width { width: 100%; margin-top: 10px; }
+
+
+
+
+/* --- LAYOUT DE CATEGORÍAS (NUEVO) --- */
+
+/* Contenedor principal: Desktop (2 columnas) */
+.category-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr; /* Imagen fija a 350px, productos ocupan el resto */
+    gap: 30px;
+    margin-bottom: 60px;
+    align-items: start; /* Alineación superior */
+}
+
+/* 1. Estilos de la Imagen Grande (Hero de Categoría) */
+.category-hero {
+    height: 100%;
+    min-height: 250px; /* Altura mínima */
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #333;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.category-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* La imagen cubre todo el espacio sin deformarse */
+    display: block;
+    transition: transform 0.5s;
+}
+
+.category-hero:hover img {
+    transform: scale(1.05); /* Zoom suave al pasar el mouse */
+}
+
+/* Fallback si no hay foto */
+.placeholder-hero {
+    width: 100%;
+    height: 100%;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    color: #444;
+}
+
+/* 2. Estilos de la Grilla de Productos (Derecha) */
+.products-grid {
+    display: grid;
+    /* Esto crea tarjetas automáticas que se ajustan al espacio */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 20px;
+}
+
+/* Ajustes a la tarjeta para que se parezca a tu imagen (Compacta) */
+.menu-card.compact {
+    background: #161616; /* Fondo más oscuro estilo tarjeta */
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+}
+
+.menu-card.compact .card-title {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.menu-card.compact .price {
+    font-size: 1.4rem;
+    color: var(--neon-blue); /* Asegúrate de tener esta variable o usa #00f3ff */
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.menu-card.compact .add-btn {
+    background: var(--neon-orange); /* O tu color naranja #ff5e00 */
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+}
+
+/* Separador Neon entre categorías */
+.neon-divider {
+    border: 0;
+    height: 1px;
+    background: #333;
+    margin: 40px auto;
+    width: 80%;
+    box-shadow: 0 0 10px var(--neon-red);
+}
+
+/* --- RESPONSIVE (MÓVILES) --- */
+@media (max-width: 768px) {
+    .category-layout {
+        grid-template-columns: 1fr; /* Una sola columna */
+        gap: 20px;
+    }
+
+    .category-hero {
+        height: 200px; /* Altura fija en celular para la imagen principal */
+        width: 100%;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr; /* Productos uno debajo del otro en móvil */
+    }
+}
