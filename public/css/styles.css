@@ -464,6 +464,41 @@ header {
     box-shadow: 0 0 10px var(--neon-red);
 }
 
+/* --- ESTILOS AGOTADO / DESHABILITADO --- */
+.out-of-stock {
+    position: relative;
+    filter: grayscale(100%); /* Pone todo en blanco y negro */
+    opacity: 0.6;
+    pointer-events: none; /* Evita clicks en botones */
+}
+
+/* Badge de AGOTADO */
+.sold-out-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    background: var(--neon-orange);
+    color: black;
+    font-weight: bold;
+    font-size: 1.8rem;
+    padding: 10px 30px;
+    border: 3px solid white;
+    z-index: 100;
+    font-family: 'Creepster', cursive;
+    box-shadow: 0 0 15px rgba(0,0,0,0.8);
+    white-space: nowrap;
+}
+
+/* Tachado de textos */
+.out-of-stock .card-title,
+.out-of-stock .card-desc,
+.out-of-stock .price {
+    text-decoration: line-through;
+    color: #888 !important;
+    text-shadow: none !important;
+}
+
 /* --- RESPONSIVE (MÓVILES) --- */
 @media (max-width: 768px) {
     .category-layout {

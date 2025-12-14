@@ -1,0 +1,198 @@
+[
+  {
+    "category": "Noticias & Promociones",
+    "image": "/img/promo/promo-general.jpg",
+    "items": [
+      {
+        "id": "new_1765739786886",
+        "name": "PromoHamburguesa",
+        "desc": "2 Hamburguesas + Papa francesa + gaseosa 250ml  c/u",
+        "price": 30000,
+        "available": true,
+        "image": "/img/promo/promoHamburguesa.jpeg"
+      }
+    ]
+  },
+  {
+    "category": "Dorilocos & Maiz",
+    "image": "/img/producto/doriloco.jpg",
+    "items": [
+      {
+        "id": "1",
+        "name": "Dorichon",
+        "desc": "Doritos, Lechona, Maiz, Queso, Pico de gallo, Arepa",
+        "price": 16000,
+        "available": false,
+        "image": ""
+      },
+      {
+        "id": "2",
+        "name": "Cerdorito",
+        "desc": "Doritos, Carne de cerdo, Chorizo, Pollo, Queso, Pico de gallo, Maiz",
+        "price": 16000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "3",
+        "name": "Mixto Familiar",
+        "desc": "Dorichon y Cerdorito en porciones familiares",
+        "price": 39000,
+        "available": true,
+        "image": ""
+      }
+    ]
+  },
+  {
+    "category": "Hamburguesas",
+    "image": "/img/producto/hamburguesa.jpg",
+    "items": [
+      {
+        "id": "4",
+        "name": "Cochinita Sencilla",
+        "desc": "Pan, Carne de res, Queso, Vegetales, Sal al gusto",
+        "price": 13000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "5",
+        "name": "Cerdita Especial",
+        "desc": "Pan, Carne de res, Queso, Jamón, Pollo, Maíz tierno, Pico de gallo, Salsas",
+        "price": 16000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "6",
+        "name": "Marranita 3 Carnes",
+        "desc": "Pan, Carne de res, Chorizo, Tocineta, Jamón, Pico de gallo, Salsas",
+        "price": 20000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "7",
+        "name": "Hambuchona",
+        "desc": "Pan, Carne de res, Lechona, Tocineta, Jamón, Queso, Maiz, Pico de gallo",
+        "price": 22000,
+        "available": true,
+        "image": ""
+      }
+    ]
+  },
+  {
+    "category": "Perros Calientes",
+    "image": "/img/producto/perro.png",
+    "items": [
+      {
+        "id": "8",
+        "name": "Marranito Sencillo",
+        "desc": "Salchicha americana, papita, salsas",
+        "price": 8000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "9",
+        "name": "Marranito Especial",
+        "desc": "Salchicha, queso, tocineta, maíz",
+        "price": 12000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "10",
+        "name": "Marralechonado",
+        "desc": "El rey de la casa con lechona",
+        "price": 15000,
+        "available": true,
+        "image": ""
+      }
+    ]
+  },
+  {
+    "category": "Salchipapas",
+    "image": "/img/producto/salchipapa.jpg",
+    "items": [
+      {
+        "id": "11",
+        "name": "Chingona L",
+        "desc": "Papa francesa, salchicha, lechona, pollo, carne, maiz, queso",
+        "price": 16000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "12",
+        "name": "Chingona XL",
+        "desc": "Versión gigante para compartir",
+        "price": 27000,
+        "available": true,
+        "image": ""
+      }
+    ]
+  },
+  {
+    "category": "Bebidas & Polas",
+    "image": "/img/cat-bebidas.jpg",
+    "items": [
+      {
+        "id": "13",
+        "name": "Jugo en Agua",
+        "desc": "Fresa, Lulo, Mango, Maracuya, Frutos Rojos",
+        "price": 5000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "14",
+        "name": "Jugo en Leche",
+        "desc": "Fresa, Lulo, Mango, Maracuya, Frutos Rojos",
+        "price": 7000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "15",
+        "name": "Limonada Natural / Cerezada",
+        "desc": "Refrescante limonada frappeada",
+        "price": 7000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "16",
+        "name": "Limonada de Coco",
+        "desc": "La favorita de la casa",
+        "price": 7000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "17",
+        "name": "Gaseosa 350ml / 400ml",
+        "desc": "Coca-Cola, Manzana, etc",
+        "price": 3500,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "18",
+        "name": "Cerveza Nacional",
+        "desc": "Poker, Aguila, Andina",
+        "price": 6000,
+        "available": true,
+        "image": ""
+      },
+      {
+        "id": "19",
+        "name": "Cerveza Importada",
+        "desc": "Corona, Stella, etc",
+        "price": 9000,
+        "available": false,
+        "image": ""
+      }
+    ]
+  }
+]

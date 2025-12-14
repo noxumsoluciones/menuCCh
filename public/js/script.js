@@ -113,6 +113,7 @@ function sendToWhatsApp(e) {
     const payment = document.getElementById('custPayment').value;
     const ref = document.getElementById('custRef').value;
     const phone = "573243700225"; // Número del Cerdo Chingón
+    const notes = document.getElementById('custNotes').value; // <--- NUEVO
 
     let msg = `*DOMICILIO SOLICITADO* 🛵💨\n\n`;
     msg += `*Cliente:* ${name}\n`;
@@ -131,7 +132,11 @@ function sendToWhatsApp(e) {
     msg += `🏦 *Medio de Pago:* ${payment}\n`;
     msg += `🗺 *Ubicación/Ref:* ${ref}\n`;
     msg += `\nGracias por comunicarte con El Cerdo Chingon 🐷`;
-
+    // Agregamos notas si existen
+    if (notes.trim() !== "") {
+        msg += `📝 *Nota:* ${notes}\n`;
+    }
+    
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
 }

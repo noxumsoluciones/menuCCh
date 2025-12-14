@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Cerdo Chingón</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #111; color: white; font-family: 'Montserrat', sans-serif; padding: 20px; padding-bottom: 80px; }
+        .category-block { background: #222; padding: 20px; margin-bottom: 20px; border-radius: 10px; border: 1px solid #333; }
+        .category-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 15px; }
+        .category-title { color: #00f3ff; margin: 0; }
+        .product-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; flex-wrap: wrap; background: #1a1a1a; padding: 10px; border-radius: 5px; border: 1px solid #333; }
+        input[type="text"], input[type="number"] { background: #333; border: 1px solid #555; color: white; padding: 8px; border-radius: 5px; }
+        .btn-action { cursor: pointer; padding: 5px 10px; border: none; border-radius: 5px; font-weight: bold; }
+        .btn-add { background: #00f3ff; color: black; }
+        .btn-del { background: #ff003c; color: white; }
+        .file-label { font-size: 0.8rem; color: #aaa; display: block; margin-top: 5px; }
+        
+        .save-btn { position: fixed; bottom: 20px; right: 20px; background: #ff5e00; color: white; padding: 15px 30px; border: none; border-radius: 50px; font-size: 1.2rem; cursor: pointer; box-shadow: 0 0 20px #ff5e00; z-index: 100; font-weight: bold; }
+        .save-btn:disabled { background: #555; cursor: wait; }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align:center; color:#ff5e00;">⚙️ GESTOR DE MENÚ</h1>
+
+    <div id="admin-container">
+        <% products.forEach((cat, catIndex) => { %>
+            <div class="category-block" data-cat-index="<%= catIndex %>">
+                <div class="category-header">
+                    <h2 class="category-title"><%= cat.category %></h2>
+                    <input type="hidden" class="cat-name" value="<%= cat.category %>">
+                    <input type="hidden" class="cat-image" value="<%= cat.image %>">
+                    <button class="btn-action btn-add" onclick="addProductRow(this)">+ Agregar Producto</button>
+                </div>
+
+                <div class="products-list">
+                    <% cat.items.forEach((item, itemIndex) => { %>
+                        <div class="product-row">
+                            <input type="hidden" class="item-id" value="<%= item.id %>">
+                            
+                            <input type="text" class="input-name" value="<%= item.name %>" placeholder="Nombre" style="flex:2">
+                            
+                            <div style="flex:2">
+                                <input type="hidden" class="input-current-img" value="<%= item.image || '' %>">
+                                <small style="color:#00f3ff"><%= item.image ? item.image.split('/').pop() : 'Sin imagen' %></small>
+                                <input type="file" class="input-file" accept="image/jpeg, image/png">
+                            </div>
+
+                            <input type="text" class="input-desc" value="<%= item.desc %>" placeholder="Desc" style="flex:3">
+                            <input type="number" class="input-price" value="<%= item.price %>" placeholder="$" style="flex:1">
+                            
+                            <div style="display:flex; align-items:center;">
+                                <input type="checkbox" class="input-available" <%= item.available ? 'checked' : '' %>>
+                                <small>On</small>
+                            </div>
+
+                            <button class="btn-action btn-del" onclick="removeRow(this)">X</button>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <button class="save-btn" onclick="saveChanges()">GUARDAR CAMBIOS 💾</button>
+
+    <script>
+        // 1. Agregar nueva fila vacía
+        function addProductRow(btn) {
+            const list = btn.closest('.category-block').querySelector('.products-list');
+            const newRow = document.createElement('div');
+            newRow.className = 'product-row';
+            newRow.innerHTML = `
+                <input type="hidden" class="item-id" value="new_${Date.now()}">
+                <input type="text" class="input-name" placeholder="Nuevo Producto" style="flex:2">
+                <div style="flex:2">
+                    <input type="hidden" class="input-current-img" value="">
+                    <input type="file" class="input-file" accept="image/jpeg, image/png">
+                </div>
+                <input type="text" class="input-desc" placeholder="Descripción" style="flex:3">
+                <input type="number" class="input-price" placeholder="Precio" style="flex:1">
+                <div style="display:flex; align-items:center;">
+                    <input type="checkbox" class="input-available" checked> <small>On</small>
+                </div>
+                <button class="btn-action btn-del" onclick="removeRow(this)">X</button>
+            `;
+            list.appendChild(newRow);
+        }
+
+        // 2. Eliminar fila
+        function removeRow(btn) {
+            if(confirm('¿Borrar este producto?')) {
+                btn.closest('.product-row').remove();
+            }
+        }
+
+        // 3. Guardar Todo
+        async function saveChanges() {
+            const btn = document.querySelector('.save-btn');
+            btn.innerText = "⏳ SUBIENDO...";
+            btn.disabled = true;
+
+            const formData = new FormData();
+            const categoriesData = [];
+
+            // Recorremos el DOM
+            document.querySelectorAll('.category-block').forEach((block, catIndex) => {
+                const items = [];
+                
+                block.querySelectorAll('.product-row').forEach((row, itemIndex) => {
+                    // Datos JSON
+                    items.push({
+                        id: row.querySelector('.item-id').value,
+                        name: row.querySelector('.input-name').value,
+                        desc: row.querySelector('.input-desc').value,
+                        price: parseInt(row.querySelector('.input-price').value) || 0,
+                        available: row.querySelector('.input-available').checked,
+                        image: row.querySelector('.input-current-img').value // Mantiene la vieja si no hay nueva
+                    });
+
+                    // Archivos: Si hay archivo seleccionado, lo metemos al FormData
+                    const fileInput = row.querySelector('.input-file');
+                    if (fileInput.files[0]) {
+                        // Usamos un nombre clave: catIndex-itemIndex
+                        formData.append(`${catIndex}-${itemIndex}`, fileInput.files[0]);
+                    }
+                });
+
+                categoriesData.push({
+                    category: block.querySelector('.cat-name').value,
+                    image: block.querySelector('.cat-image').value,
+                    items: items
+                });
+            });
+
+            // Agregamos el JSON estructurado al FormData
+            formData.append('jsonData', JSON.stringify(categoriesData));
+
+            try {
+                const res = await fetch('/api/update-products', {
+                    method: 'POST',
+                    body: formData // No ponemos Content-Type header, fetch lo pone solo con boundary
+                });
+                
+                const data = await res.json();
+                
+                if(data.success) {
+                    window.location.href = '/'; // <--- REDIRECCIÓN INMEDIATA
+                } else {
+                    alert('Error en el servidor');
+                    btn.disabled = false;
+                    btn.innerText = "GUARDAR CAMBIOS 💾";
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Error de conexión');
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

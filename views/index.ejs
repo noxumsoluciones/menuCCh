@@ -78,23 +78,36 @@
 
             <div class="products-grid">
                 <% cat.items.forEach(item => { %>
-                    <div class="menu-card compact" data-aos="fade-up">
-                        <div class="card-info">
-                            <h3 class="card-title"><%= item.name %></h3>
-                            <p class="card-desc"><%= item.desc %></p>
-                            <div class="price-tag">
-                                <span class="price neon-text-blue">$<%= item.price.toLocaleString() %></span>
-                                <button class="add-btn" 
-                                    data-id="<%= item.id %>" 
-                                    data-name="<%= item.name %>" 
-                                    data-price="<%= item.price %>" 
-                                    onclick="addFromButton(this)">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                <% }) %>
+    
+    <div class="menu-card compact <%= item.available ? '' : 'out-of-stock' %>" data-aos="fade-up">
+        
+        <% if (!item.available) { %>
+            <div class="sold-out-badge">AGOTADO</div>
+        <% } %>
+
+        <div class="card-info">
+            <h3 class="card-title"><%= item.name %></h3>
+            <p class="card-desc"><%= item.desc %></p>
+            <div class="price-tag">
+                <span class="price neon-text-blue">$<%= item.price.toLocaleString() %></span>
+                
+                <% if (item.available) { %>
+                    <button class="add-btn" 
+                        data-id="<%= item.id %>" 
+                        data-name="<%= item.name %>" 
+                        data-price="<%= item.price %>" 
+                        onclick="addFromButton(this)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                <% } else { %>
+                    <button class="add-btn disabled" disabled style="background:#555; cursor:not-allowed;">
+                        <i class="fas fa-ban"></i>
+                    </button>
+                <% } %>
+            </div>
+        </div>
+    </div>
+<% }) %>
             </div>
 
         </div> <hr class="neon-divider">
@@ -167,6 +180,12 @@
                 <div class="form-group">
                     <label>Ubicación / Referencia:</label>
                     <input type="text" id="custRef" placeholder="Casa azul, cerca al parque...">
+                </div>
+                <div class="form-group">
+                    <label>¿Algún detalle adicional?</label>
+                    <textarea id="custNotes" rows="3" 
+                        placeholder="Ej: Sin cebolla, salsas aparte, carne bien asada..." 
+                        style="width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: white; border-radius: 5px;"></textarea>
                 </div>
 
                 <button type="submit" class="cta-btn full-width">

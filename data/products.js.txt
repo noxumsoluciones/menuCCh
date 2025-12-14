@@ -1,3 +1,4 @@
+/*
 // data/products.js
 const products = [
     {
@@ -56,4 +57,4 @@ const news = [
     }
 ];
 
-module.exports = { products, news };
+module.exports = { products, news };*/
