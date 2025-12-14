@@ -1,5 +1,20 @@
 let cart = [];
 
+// 1. Función para cambiar cantidades (NUEVA)
+// delta puede ser +1 (sumar) o -1 (restar)
+function changeQty(index, delta) {
+    cart[index].qty += delta;
+
+    // Si la cantidad llega a 0, preguntamos o eliminamos directo
+    if (cart[index].qty <= 0) {
+        removeFromCart(index);
+    } else {
+        // Solo actualizamos visualmente
+        updateCartIcon();
+        openCart(); // Re-renderizar el modal
+    }
+}
+
 // 1. Agregar al carrito
 function addToCart(id, name, price) {
     // Buscar si ya existe para sumar cantidad
@@ -48,15 +63,26 @@ function openCart() {
         const itemTotal = item.price * item.qty;
         total += itemTotal;
         
+        // AQUÍ ESTÁ EL CAMBIO VISUAL: Botones - y +
         container.innerHTML += `
             <div class="cart-item">
-                <div>
-                    <strong class="cart-item-title">${item.name}</strong> x ${item.qty}
+                <div style="flex:1;">
+                    <strong class="cart-item-title">${item.name}</strong>
                     <div style="font-size:0.8rem; color:#888;">$${item.price.toLocaleString()} c/u</div>
                 </div>
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <span>$${itemTotal.toLocaleString()}</span>
-                    <i class="fas fa-trash" style="color:red; cursor:pointer;" onclick="removeFromCart(${index})"></i>
+
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div class="qty-control" style="display:flex; align-items:center; gap:5px; background:#222; padding:5px; border-radius:5px;">
+                        <button onclick="changeQty(${index}, -1)" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold; width:20px;">-</button>
+                        <span style="font-weight:bold; color:var(--neon-orange);">${item.qty}</span>
+                        <button onclick="changeQty(${index}, 1)" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold; width:20px;">+</button>
+                    </div>
+
+                    <div style="min-width:70px; text-align:right;">
+                        $${itemTotal.toLocaleString()}
+                    </div>
+                    
+                    <i class="fas fa-trash" style="color:#ff003c; cursor:pointer; margin-left:10px;" onclick="removeFromCart(${index})"></i>
                 </div>
             </div>
         `;
@@ -116,4 +142,14 @@ window.onclick = function(event) {
     if (event.target == modal) {
         closeCart();
     }
+}
+
+function addFromButton(btn) {
+    // dataset lee los atributos 'data-id', 'data-name', 'data-price'
+    const id = btn.dataset.id;
+    const name = btn.dataset.name;
+    const price = parseInt(btn.dataset.price); // Aseguramos que sea número
+
+    // Llamamos a tu función original
+    addToCart(id, name, price);
 }

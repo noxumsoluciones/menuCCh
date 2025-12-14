@@ -33,16 +33,28 @@
     <section id="news" class="news-section">
         <h2 class="section-title" data-aos="fade-right">Noticias Chingonas</h2>
         <div class="news-container">
-            <% news.forEach(item => { %>
-                <div class="news-card" data-aos="flip-left">
-                    <img src="<%= item.image %>" alt="<%= item.title %>" class="news-img">
-                    <div class="news-info">
-                        <h3><%= item.title %></h3>
-                        <p><%= item.desc %></p>
-                    </div>
+    <% news.forEach(item => { %>
+        <div class="news-card" data-aos="flip-left">
+            <img src="<%= item.image %>" alt="<%= item.title %>" class="news-img">
+            <div class="news-info">
+                <h3><%= item.title %></h3>
+                <p><%= item.desc %></p>
+                
+                <div class="price-tag" style="margin-top: 15px; justify-content: space-between;">
+                    <span class="price neon-text-blue">$<%= item.price.toLocaleString() %></span>
+                    
+                    <button class="add-btn" 
+                        data-id="<%= item.id %>" 
+                        data-name="<%= item.title %>" 
+                        data-price="<%= item.price %>" 
+                        onclick="addFromButton(this)">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
-            <% }) %>
+                </div>
         </div>
+    <% }) %>
+</div>
     </section>
 
     <section id="menu" class="menu-section">
@@ -72,7 +84,11 @@
                             <p class="card-desc"><%= item.desc %></p>
                             <div class="price-tag">
                                 <span class="price neon-text-blue">$<%= item.price.toLocaleString() %></span>
-                                <button class="add-btn" onclick="addToCart('<%= item.id %>', '<%= item.name %>', <%= item.price %>)">
+                                <button class="add-btn" 
+                                    data-id="<%= item.id %>" 
+                                    data-name="<%= item.name %>" 
+                                    data-price="<%= item.price %>" 
+                                    onclick="addFromButton(this)">
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>

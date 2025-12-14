@@ -41,14 +41,18 @@ const products = [
 // Noticias / Promos basadas en tus volantes
 const news = [
     { 
+        id: "combo1", // <--- NUEVO: ID único
         title: "¡PROMO SEMANAL!", 
         image: "./img/promo/promoHamburguesa.jpeg", 
-        desc: "2 Hamburguesas + Papa + Gaseosa por solo 30K. (Mar-Mié-Jue)" 
+        desc: "2 Hamburguesas + Papa + Gaseosa por solo 30K. (Mar-Mié-Jue)",
+        price: 30000  // <--- NUEVO: Precio numérico para el carrito
     },
     { 
+        id: "combo2", // <--- NUEVO: ID único
         title: "COMBOS HOT DOG", 
         image: "./img/promo/promoPerro.jpeg", 
-        desc: "2 Marralechonados + Papas + Gaseosa por 30K." 
+        desc: "2 Marralechonados + Papas + Gaseosa por 30K.",
+        price: 30000  // <--- NUEVO: Precio numérico 
     }
 ];
 
